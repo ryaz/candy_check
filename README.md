@@ -47,8 +47,7 @@ Further more this gem uses the [official Ruby SDK](https://github.com/google/goo
 which suggest to use a locally cached service discovery. If you don't omit the `cache_file` configuration this is done
 automatically.
 
-If you have set up the Android app correctly you should get a [`purchaseToken`](http://developer.android.com/google/play/billing/billing_reference.html#getBuyIntent) per purchased item. You should use this string in combination with `packageName` and `productId`
-to verify the purchase.
+In general, the this library uses Service Account credentials to connect to Google Cloud services. When running on Compute Engine the credentials will be discovered automatically. When running on other environments, the Service Account credentials can be specified by providing the path to the JSON keyfile for the account (or the JSON itself) in environment variables. Additionally, Cloud SDK credentials can also be discovered automatically, but this is only recommended during development.
 
 ## Usage
 

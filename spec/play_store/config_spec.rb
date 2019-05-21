@@ -75,22 +75,4 @@ describe CandyCheck::PlayStore::Config do
       end.must_raise ArgumentError
     end
   end
-
-  describe 'p12 certificate' do
-    include WithFixtures
-
-    let(:attributes) do
-      {
-        application_name: 'the_name',
-        application_version: 'the_version',
-        issuer: 'the_issuer',
-        key_file: fixture_path('play_store', 'dummy.p12'),
-        key_secret: 'notasecret'
-      }
-    end
-
-    it 'load the api_key from a file' do
-      subject.api_key.wont_be_nil
-    end
-  end
 end

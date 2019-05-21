@@ -9,7 +9,7 @@ module CandyCheck
       def call!
         verify!
         if valid?
-          Subscription.new(@response)
+          Subscription.new(@response.to_h)
         else
           VerificationFailure.new(@response['error'])
         end
@@ -18,8 +18,10 @@ module CandyCheck
       private
 
       def valid?
-        ok_kind = @response['kind'] == 'androidpublisher#subscriptionPurchase'
-        @response && @response['expiryTimeMillis'] && ok_kind
+        return unless @response.class.name.demodulize == 'SubscriptionPurchase'
+
+        ok_kind = @response.kind == 'androidpublisher#subscriptionPurchase'
+        @response.expiry_time_millis && ok_kind
       end
 
       def verify!
